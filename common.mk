@@ -68,7 +68,8 @@ PRODUCT_PACKAGES += \
     PhaseBeam \
     VisualizationWallpapers \
     PhotoTable \
-    PhotoPhase
+    PhotoPhase \
+    librs_jni
 
 # World APN list
 PRODUCT_COPY_FILES += \
@@ -88,8 +89,6 @@ PRODUCT_PACKAGES += \
     Mms \
     Stk \
     CellBroadcastReceiver \
-    VoiceDialer \
-    WhisperPush \
     SoundRecorder
 
 # Default ringtone
@@ -102,10 +101,18 @@ PRODUCT_PACKAGES += \
     procrank \
     su
 
+# Root
+PRODUCT_COPY_FILES += \
+    external/koush/Superuser/init.superuser.rc:root/init.superuser.rc
+
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.root_access=1
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/aosp/overlay/common
+
+# Bootanimation
+PRODUCT_COPY_FILES += \
+    vendor/aosp/prebuilt/common/media/bootanimation.zip:system/media/bootanimation.zip
 
 # by default, do not update the recovery with system updates
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
